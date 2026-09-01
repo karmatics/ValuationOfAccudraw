@@ -1,0 +1,36 @@
+{
+  "name": "ValuationOfAccudraw",
+  "version": "1.0.0",
+  "description": "Interactive web dialog and basics application (Forked from BasicsWithDialogBox)",
+  "type": "luno-web-app",
+  "mainClass": "ValuationOfAccudraw",
+  "entrypoint": {
+    "file": "js/ValuationOfAccudraw.js",
+    "class": "ValuationOfAccudraw",
+    "method": "run"
+  },
+  "main": [
+    "js/ValuationOfAccudraw.js"
+  ],
+  "library": [
+    "DomBasics.js",
+    "UITools.js"
+  ],
+  "styles": [
+    "css/basicsWithDialogBox.css"
+  ],
+  "processedCountSinceCheckpoint": 1,
+  "changedMethods": {
+    "ValuationOfAccudraw/js/ValuationOfAccudraw.js": "2026-08-24T18:34:07.900Z",
+    "ValuationOfAccudraw/luno.json": "2026-08-24T18:24:38.420Z",
+    "ValuationOfAccudraw/index.html": "2026-08-24T18:24:38.420Z",
+    "Library/DomBasics.js.bak": "2026-08-24T18:48:35.375Z",
+    "Library/DomBasics.js": "2026-08-24T18:48:35.375Z",
+    "Library/UITools.js.bak": "2026-08-24T18:48:35.375Z",
+    "Library/UITools.js": "2026-08-24T18:48:35.375Z",
+    "LunoPatchLog.html": "2026-08-24T18:48:35.375Z",
+    "js/ValuationOfAccudraw.js": "2026-09-01T11:53:37.986Z"
+  },
+  "lastCheckpointTime": "2026-09-01T11:51:07.688Z",
+  "pendingCheckpointDescription": "Clean fork initialized from BasicsWithDialogBox"
+}
