@@ -19,7 +19,7 @@
   "styles": [
     "css/basicsWithDialogBox.css"
   ],
-  "processedCountSinceCheckpoint": 4,
+  "processedCountSinceCheckpoint": 5,
   "changedMethods": {
     "ValuationOfAccudraw/js/ValuationOfAccudraw.js": "2026-08-24T18:34:07.900Z",
     "ValuationOfAccudraw/luno.json": "2026-08-24T18:24:38.420Z",
@@ -29,7 +29,8 @@
     "Library/UITools.js.bak": "2026-08-24T18:48:35.375Z",
     "Library/UITools.js": "2026-08-24T18:48:35.375Z",
     "LunoPatchLog.html": "2026-08-24T18:48:35.375Z",
-    "js/ValuationOfAccudraw.js": "2026-09-02T05:45:59.754Z"
+    "js/ValuationOfAccudraw.js": "2026-09-02T05:45:59.754Z",
+    "Luno/docs/LunoWorkspaceHandoff.md": "2026-09-08T23:19:43.575Z"
   },
   "lastCheckpointTime": "2026-09-01T11:51:07.688Z",
   "pendingCheckpointDescription": "Clean fork initialized from BasicsWithDialogBox"
