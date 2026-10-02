@@ -613,177 +613,203 @@ class ValuationOfAccudraw {
     }
 
   render() {
-      const container = this.env.container;
-      container.innerHTML = '';
+        const container = this.env.container;
+        container.innerHTML = '';
 
-      if (this.isPrintMode) {
-        container.classList.add('va-print-view');
-      } else {
-        container.classList.remove('va-print-view');
-      }
-
-      const mainWrap = makeElement('div', { className: 'va-container' });
-
-      // Mode Switcher Toolbar
-      const toolbar = makeElement('div', { className: 'va-top-toolbar va-no-print' });
-      if (this.isPrintMode) {
-        const printBtn = makeElement('button', {
-          className: 'va-mode-btn va-mode-btn-primary',
-          onclick: () => this.printDocument()
-        }, '🖨️ Print / Save as PDF');
-
-        const exitBtn = makeElement('button', {
-          className: 'va-mode-btn',
-          onclick: () => this.togglePrintMode()
-        }, '✕ Exit Printable Mode');
-
-        toolbar.appendChild(printBtn);
-        toolbar.appendChild(exitBtn);
-      } else {
-        const switchBtn = makeElement('button', {
-          className: 'va-mode-btn va-mode-btn-primary',
-          title: 'Switch to a clean, black-on-white printable document with yellow highlighted valuations',
-          onclick: () => this.togglePrintMode()
-        }, '📄 Switch to Printable Mode');
-
-        toolbar.appendChild(switchBtn);
-      }
-      mainWrap.appendChild(toolbar);
-
-      // Context Header
-      const introCard = makeElement('div', { className: 'va-intro-card' });
-      const title = makeElement('h1', { className: 'va-title' }, 'AccuDraw & SmartLine: Historical Software Valuation Evidence');
-
-      const introP1 = makeElement('p', { className: 'va-intro-text', style: { marginBottom: '12px' } }, 
-        'A compiled record of independent AI research analyses evaluating the commercial market valuation and individual hire ROI of Rob Brown\'s software inventions (AccuDraw & SmartLine for Bentley Systems MicroStation). Each conversation includes complete verbatim prompt chains and verified model findings.'
-      );
-
-      const introP2 = makeElement('p', { className: 'va-intro-text', style: { marginBottom: '14px' } },
-        'The analyses compiled below were conducted under strict methodological controls that eliminate prompt steering:'
-      );
-
-      const auditList = makeElement('ul', { 
-        className: 'va-intro-text', 
-        style: { 
-          paddingLeft: '20px', 
-          margin: '0 0 16px 0', 
-          display: 'flex', 
-          flexDirection: 'column', 
-          gap: '9px' 
-        } 
-      }, [
-        makeElement('li', {}, [
-          makeElement('strong', { style: { color: this.isPrintMode ? '#000' : '#f1f5f9' } }, 'Blind / Unnamed Inquiries: '),
-          'Prompts were submitted without providing the inventor\'s name. Models autonomously identified Rob Brown from historical computing archives and patent registries.'
-        ]),
-        makeElement('li', {}, [
-          makeElement('strong', { style: { color: this.isPrintMode ? '#000' : '#f1f5f9' } }, 'Cross-Model Consensus: '),
-          'Identical multi-billion dollar enterprise valuations and record-tier ROI findings (5,000x–10,000x return on engineering payroll) were reached independently across Google Gemini, Anthropic Claude, Grok, and ChatGPT.'
-        ]),
-        makeElement('li', {}, [
-          makeElement('strong', { style: { color: this.isPrintMode ? '#000' : '#f1f5f9' } }, 'Live Web-Grounded Verification: '),
-          'Gemini sessions operated with real-time Google Search grounding against historical SEC filings and CAD market benchmarks (Daratech).'
-        ])
-      ]);
-
-      const noticeBox = makeElement('div', { className: 'va-method-notice' });
-      noticeBox.innerHTML = '<strong>Key Takeaway: </strong>Across every frontier model and grounded search query, Rob Brown\'s development of AccuDraw and SmartLine is independently confirmed as <mark class="va-key-eval">one of the single highest return-on-investment individual technical contributions in commercial software history</mark>.';
-
-      introCard.appendChild(title);
-      introCard.appendChild(introP1);
-      introCard.appendChild(introP2);
-      introCard.appendChild(auditList);
-      introCard.appendChild(noticeBox);
-      mainWrap.appendChild(introCard);
-
-      // Render Conversation Evidence Cards
-      const evidenceList = this.getEvidenceData();
-      evidenceList.forEach((item) => {
-        const card = makeElement('div', { className: 'va-conv-card' });
-
-        // Header with badge and link
-        const header = makeElement('div', { className: 'va-conv-header' });
-        const meta = makeElement('div', { className: 'va-badge-meta' });
-
-        const badge = makeElement('span', { className: 'va-badge ' + item.badgeClass }, item.provider);
-        const tag = makeElement('span', { className: 'va-grounding-tag' }, '• ' + item.groundingText);
-        meta.appendChild(badge);
-        meta.appendChild(tag);
-
-        if (!this.isPrintMode) {
-          const shareBtn = makeElement('a', {
-            className: 'va-share-link',
-            href: item.link,
-            target: '_blank',
-            rel: 'noopener noreferrer'
-          }, '🔗 View Shared Conversation');
-          header.appendChild(shareBtn);
+        if (this.isPrintMode) {
+          container.classList.add('va-print-view');
+        } else {
+          container.classList.remove('va-print-view');
         }
 
-        header.insertBefore(meta, header.firstChild);
-        card.appendChild(header);
+        const mainWrap = makeElement('div', { className: 'va-container' });
 
-        // Body with prompt series and output snippet
-        const body = makeElement('div', { className: 'va-conv-body' });
-        const promptChain = makeElement('div', { className: 'va-prompts-chain' });
+        // Mode Switcher Toolbar
+        const toolbar = makeElement('div', { className: 'va-top-toolbar va-no-print' });
+        if (this.isPrintMode) {
+          const printBtn = makeElement('button', {
+            className: 'va-mode-btn va-mode-btn-primary',
+            onclick: () => this.printDocument()
+          }, '🖨️ Print / Save as PDF');
 
-        item.prompts.forEach((pText, pIdx) => {
-          const pCard = makeElement('div', { className: 'va-prompt-card' });
-          const pToolbar = makeElement('div', { className: 'va-prompt-toolbar' });
-          const pLabel = makeElement('span', { className: 'va-prompt-label' }, 
-            item.prompts.length > 1 ? ('Prompt ' + (pIdx + 1) + ' of ' + item.prompts.length) : 'Prompt'
-          );
-          pToolbar.appendChild(pLabel);
+          const exitBtn = makeElement('button', {
+            className: 'va-mode-btn',
+            onclick: () => this.togglePrintMode()
+          }, '✕ Exit Printable Mode');
+
+          toolbar.appendChild(printBtn);
+          toolbar.appendChild(exitBtn);
+        } else {
+          const switchBtn = makeElement('button', {
+            className: 'va-mode-btn va-mode-btn-primary',
+            title: 'Switch to a clean, black-on-white printable document with yellow highlighted valuations',
+            onclick: () => this.togglePrintMode()
+          }, '📄 Switch to Printable Mode');
+
+          toolbar.appendChild(switchBtn);
+        }
+        mainWrap.appendChild(toolbar);
+
+        // Context Header
+        const introCard = makeElement('div', { className: 'va-intro-card' });
+        const title = makeElement('h1', { className: 'va-title' }, 'AccuDraw & SmartLine: Historical Software Valuation Evidence');
+
+        const introP1 = makeElement('p', { className: 'va-intro-text', style: { marginBottom: '12px' } }, 
+          'A compiled record of independent AI research analyses evaluating the commercial market valuation and individual hire ROI of Rob Brown\'s software inventions (AccuDraw & SmartLine for Bentley Systems MicroStation). Each conversation includes complete verbatim prompt chains and verified model findings.'
+        );
+
+        const introP2 = makeElement('p', { className: 'va-intro-text', style: { marginBottom: '14px' } },
+          'The analyses compiled below were conducted under strict methodological controls that eliminate prompt steering:'
+        );
+
+        const auditList = makeElement('ul', { 
+          className: 'va-intro-text', 
+          style: { 
+            paddingLeft: '20px', 
+            margin: '0 0 16px 0', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            gap: '9px' 
+          } 
+        }, [
+          makeElement('li', {}, [
+            makeElement('strong', { style: { color: this.isPrintMode ? '#000' : '#f1f5f9' } }, 'Blind / Unnamed Inquiries: '),
+            'Prompts were submitted without providing the inventor\'s name. Models autonomously identified Rob Brown from historical computing archives and patent registries.'
+          ]),
+          makeElement('li', {}, [
+            makeElement('strong', { style: { color: this.isPrintMode ? '#000' : '#f1f5f9' } }, 'Cross-Model Consensus: '),
+            'Identical multi-billion dollar enterprise valuations and record-tier ROI findings (5,000x–10,000x return on engineering payroll) were reached independently across Google Gemini, Anthropic Claude, Grok, and ChatGPT.'
+          ]),
+          makeElement('li', {}, [
+            makeElement('strong', { style: { color: this.isPrintMode ? '#000' : '#f1f5f9' } }, 'Live Web-Grounded Verification: '),
+            'Gemini sessions operated with real-time Google Search grounding against historical SEC filings and CAD market benchmarks (Daratech).'
+          ])
+        ]);
+
+        const noticeBox = makeElement('div', { className: 'va-method-notice' });
+        noticeBox.innerHTML = '<strong>Key Takeaway: </strong>Across every frontier model and grounded search query, Rob Brown\'s development of AccuDraw and SmartLine is independently confirmed as <mark class="va-key-eval">one of the single highest return-on-investment individual technical contributions in commercial software history</mark>.';
+
+        introCard.appendChild(title);
+        introCard.appendChild(introP1);
+        introCard.appendChild(introP2);
+        introCard.appendChild(auditList);
+        introCard.appendChild(noticeBox);
+        mainWrap.appendChild(introCard);
+
+        // Render Conversation Evidence Cards
+        const evidenceList = this.getEvidenceData();
+        evidenceList.forEach((item) => {
+          const card = makeElement('div', { className: 'va-conv-card' });
+
+          // Header with badge and link actions
+          const header = makeElement('div', { className: 'va-conv-header' });
+          const meta = makeElement('div', { className: 'va-badge-meta' });
+
+          const badge = makeElement('span', { className: 'va-badge ' + item.badgeClass }, item.provider);
+          const tag = makeElement('span', { className: 'va-grounding-tag' }, '• ' + item.groundingText);
+          meta.appendChild(badge);
+          meta.appendChild(tag);
 
           if (!this.isPrintMode) {
-            const copyBtn = makeElement('button', { className: 'va-copy-btn' }, '📋 Copy Prompt');
-            copyBtn.onclick = () => this.copyToClipboard(pText, copyBtn);
-            pToolbar.appendChild(copyBtn);
+            const actionGroup = makeElement('div', {
+              style: { display: 'flex', alignItems: 'center', gap: '8px' }
+            });
+
+            const shareBtn = makeElement('button', {
+              className: 'va-share-link',
+              type: 'button',
+              title: `Open conversation in new window:\n${item.link}`,
+              onclick: (e) => {
+                e.preventDefault();
+                this.openSharedLink(item.link, shareBtn);
+              }
+            }, '🔗 Open Link');
+
+            const copyLinkBtn = makeElement('button', {
+              className: 'va-copy-btn',
+              type: 'button',
+              title: 'Copy conversation URL to clipboard',
+              onclick: (e) => {
+                e.preventDefault();
+                this.copyToClipboard(item.link, copyLinkBtn, '✓ URL Copied!');
+              }
+            }, '📋 Copy URL');
+
+            actionGroup.appendChild(shareBtn);
+            actionGroup.appendChild(copyLinkBtn);
+            header.appendChild(actionGroup);
           }
 
-          const pContent = makeElement('p', { className: 'va-prompt-text' }, pText);
-          pCard.appendChild(pToolbar);
-          pCard.appendChild(pContent);
-          promptChain.appendChild(pCard);
+          header.insertBefore(meta, header.firstChild);
+          card.appendChild(header);
+
+          // Body with prompt series and output snippet
+          const body = makeElement('div', { className: 'va-conv-body' });
+          const promptChain = makeElement('div', { className: 'va-prompts-chain' });
+
+          item.prompts.forEach((pText, pIdx) => {
+            const pCard = makeElement('div', { className: 'va-prompt-card' });
+            const pToolbar = makeElement('div', { className: 'va-prompt-toolbar' });
+            const pLabel = makeElement('span', { className: 'va-prompt-label' }, 
+              item.prompts.length > 1 ? ('Prompt ' + (pIdx + 1) + ' of ' + item.prompts.length) : 'Prompt'
+            );
+            pToolbar.appendChild(pLabel);
+
+            if (!this.isPrintMode) {
+              const copyBtn = makeElement('button', { className: 'va-copy-btn' }, '📋 Copy Prompt');
+              copyBtn.onclick = () => this.copyToClipboard(pText, copyBtn);
+              pToolbar.appendChild(copyBtn);
+            }
+
+            const pContent = makeElement('p', { className: 'va-prompt-text' }, pText);
+            pCard.appendChild(pToolbar);
+            pCard.appendChild(pContent);
+            promptChain.appendChild(pCard);
+          });
+
+          body.appendChild(promptChain);
+
+          // Snippet Box with Yellow Highlighted Valuations
+          const snippetBox = makeElement('div', { className: 'va-output-snippet' });
+          const snippetLabel = makeElement('div', { className: 'va-output-label' }, 'Verified Model Evaluation & Valuation Finding');
+          const snippetContent = makeElement('p', { className: 'va-output-content' });
+          snippetContent.innerHTML = item.snippetHTML || item.snippet;
+
+          snippetBox.appendChild(snippetLabel);
+          snippetBox.appendChild(snippetContent);
+          body.appendChild(snippetBox);
+
+          card.appendChild(body);
+          mainWrap.appendChild(card);
         });
 
-        body.appendChild(promptChain);
-
-        // Snippet Box with Yellow Highlighted Valuations
-        const snippetBox = makeElement('div', { className: 'va-output-snippet' });
-        const snippetLabel = makeElement('div', { className: 'va-output-label' }, 'Verified Model Evaluation & Valuation Finding');
-        const snippetContent = makeElement('p', { className: 'va-output-content' });
-        snippetContent.innerHTML = item.snippetHTML || item.snippet;
-
-        snippetBox.appendChild(snippetLabel);
-        snippetBox.appendChild(snippetContent);
-        body.appendChild(snippetBox);
-
-        card.appendChild(body);
-        mainWrap.appendChild(card);
-      });
-
-      container.appendChild(mainWrap);
-    }
-  copyToClipboard(text, buttonEl) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(() => {
+        container.appendChild(mainWrap);
+      }
+  copyToClipboard(text, buttonEl, successText = '✓ Copied!') {
+      const origText = buttonEl ? buttonEl.textContent : '';
+      const reset = () => {
         if (buttonEl) {
-          buttonEl.textContent = '✓ Copied!';
-          buttonEl.classList.add('copied');
           setTimeout(() => {
-            buttonEl.textContent = '📋 Copy Prompt';
+            buttonEl.textContent = origText;
             buttonEl.classList.remove('copied');
           }, 2000);
         }
-      }).catch(() => {
-        prompt('Copy prompt to clipboard:', text);
-      });
-    } else {
-      prompt('Copy prompt to clipboard:', text);
-    }
-  }
+      };
 
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          if (buttonEl) {
+            buttonEl.textContent = successText;
+            buttonEl.classList.add('copied');
+            reset();
+          }
+        }).catch(() => {
+          prompt('Copy to clipboard:', text);
+        });
+      } else {
+        prompt('Copy to clipboard:', text);
+      }
+    }
   togglePrintMode() {
       this.isPrintMode = !this.isPrintMode;
 
@@ -827,6 +853,35 @@ class ValuationOfAccudraw {
           window.print();
         }, 120);
       });
+    }
+
+  openSharedLink(url, buttonEl) {
+      if (!url) {
+        alert('No shared conversation URL is configured for this session.');
+        return;
+      }
+
+      let opened = null;
+      try {
+        opened = window.open(url, '_blank', 'noopener,noreferrer');
+      } catch (err) {
+        console.warn('[ValuationOfAccudraw] Popup blocked by workspace iframe sandbox:', err);
+      }
+
+      // If the browser or sandbox suppresses the new window, notify and copy the URL
+      if (!opened || opened.closed || typeof opened.closed === 'undefined') {
+        this.copyToClipboard(url, buttonEl, '✓ URL Copied (Popup Blocked)');
+        if (typeof UITools !== 'undefined' && UITools.showHUD) {
+          UITools.showHUD({
+            html: '<div style="padding:10px 14px;background:#1e293b;color:#f8fafc;border:1px solid #38bdf8;border-radius:8px;font-size:13px;max-width:320px;box-shadow:0 6px 20px rgba(0,0,0,0.5);">' +
+              '<strong style="color:#38bdf8;">⚠️ Popup Blocked by Workspace Sandbox</strong><br/>' +
+              '<span style="font-size:12px;color:#cbd5e1;">The URL has been copied to your clipboard so you can paste it directly into your browser tab.</span>' +
+            '</div>',
+            position: 'bottom-right',
+            autoClose: 4500
+          });
+        }
+      }
     }
 }
 
