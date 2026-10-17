@@ -19,7 +19,7 @@
   "styles": [
     "css/basicsWithDialogBox.css"
   ],
-  "processedCountSinceCheckpoint": 0,
+  "processedCountSinceCheckpoint": 23,
   "changedMethods": {
     "ValuationOfAccudraw/js/ValuationOfAccudraw.js": "2026-08-24T18:34:07.900Z",
     "ValuationOfAccudraw/luno.json": "2026-08-24T18:24:38.420Z",
@@ -30,8 +30,14 @@
     "Library/UITools.js": "2026-08-24T18:48:35.375Z",
     "LunoPatchLog.html": "2026-08-24T18:48:35.375Z",
     "js/ValuationOfAccudraw.js": "2026-10-02T06:56:45.404Z",
-    "Luno/docs/LunoWorkspaceHandoff.md": "2026-09-08T23:19:43.575Z"
+    "Luno/docs/LunoWorkspaceHandoff.md": "2026-09-08T23:19:43.575Z",
+    "CadPlan/js/CadArchitectureDecisionsContent.js": "2026-10-16T23:43:07.786Z",
+    "CadPlan/js/CadPromptBundlerDialog.js": "2026-10-16T23:56:10.090Z",
+    "CadPlan/js/CadITwinParityContent.js": "2026-10-16T23:56:10.090Z",
+    "CadPlan/CadPlan.js": "2026-10-16T23:45:08.286Z",
+    "CadPlan/luno.json": "2026-10-16T23:45:08.286Z",
+    "CadPlan/js/CadCraftIntegrationContent.js": "2026-10-16T23:56:10.090Z"
   },
-  "lastCheckpointTime": "2026-10-02T06:56:50.191Z",
+  "lastCheckpointTime": "2026-10-10T06:22:27.892Z",
   "pendingCheckpointDescription": "Clean working tree"
 }
